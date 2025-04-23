@@ -1,0 +1,17 @@
+.env
+.venv
+.DS_Store
+
+# Ignore all pycache directories
+pycache/
+
+# Ignore any .pyc files, which are compiled Python files
+*.pyc
+
+# Ignore notebook files and the minIO uploader script
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+#*.ipynb
+#notebooks/
+test.ipynb
+*.egg-info
