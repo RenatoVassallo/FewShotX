@@ -1,6 +1,6 @@
 import pandas as pd
 import importlib.resources as pkg_resources
-from FewShotX import datasets
+from . import datasets
 
 def load_dataset(filename: str) -> pd.DataFrame:
     """
@@ -15,5 +15,3 @@ def load_dataset(filename: str) -> pd.DataFrame:
             return pd.read_parquet(f)
     except FileNotFoundError:
         raise ValueError(f"Dataset {filename} not found in FewShotX/datasets")
-
-
