@@ -270,6 +270,14 @@ wheels = [
 ]
 
 [[package]]
+name = "en-core-web-sm"
+version = "3.8.0"
+source = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" }
+wheels = [
+    { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl", hash = "sha256:1932429db727d4bff3deed6b34cfc05df17794f4a52eeb26cf8928f7c1a0fb85" },
+]
+
+[[package]]
 name = "et-xmlfile"
 version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -293,6 +301,7 @@ version = "0.1.2"
 source = { editable = "." }
 dependencies = [
     { name = "accelerate" },
+    { name = "en-core-web-sm" },
     { name = "huggingface-hub", extra = ["hf-xet"] },
     { name = "ipykernel" },
     { name = "ipywidgets" },
@@ -321,6 +330,7 @@ dev = [
 requires-dist = [
     { name = "accelerate", specifier = ">=1.6.0" },
     { name = "dropbox", marker = "extra == 'dev'", specifier = ">=12.0.2" },
+    { name = "en-core-web-sm", url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" },
     { name = "huggingface-hub", extras = ["hf-xet"], specifier = ">=0.30.2" },
     { name = "ipykernel", specifier = ">=6.29.5" },
     { name = "ipykernel", marker = "extra == 'dev'", specifier = ">=6.29.5" },

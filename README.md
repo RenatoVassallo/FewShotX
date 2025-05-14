@@ -21,6 +21,7 @@ pip install https://github.com/RenatoVassallo/FewShotX/releases/download/0.1.2/f
 
 For detailed tutorials and examples, refer to the following notebooks:
 
+* [Dictionary Tutorial](./tutorials/Dictionary_Tutorial.ipynb): Demonstrates word counting methods using spaCy’s `en_core_web_sm` model for tokenization.
 * [ZeroShot Tutorial](./tutorials/ZeroShot_Tutorial.ipynb): Demonstrates text classification using the ZeroShotLearner and ZeroShotNLI classes.
 * [FewShot Tutorial](./tutorials/FewShot_Tutorial.ipynb): Step-by-step implementation of FewShotLearner for custom text datasets.
 
