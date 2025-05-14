@@ -14,7 +14,7 @@ FewShotX is a Python package for zero-shot and few-shot learning, designed for t
 Install the latest version:
 
 ```bash
-pip install https://github.com/RenatoVassallo/FewShotX/releases/download/FewShotX/fewshotx-0.1.2-py3-none-any.whl
+pip install https://github.com/RenatoVassallo/FewShotX/releases/download/0.1.2/fewshotx-0.1.2-py3-none-any.whl
 ```
 
 ## 📚 Tutorials and Examples
