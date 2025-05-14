@@ -12,6 +12,11 @@ pycache/
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 #*.ipynb
-#notebooks/
+*.tar.gz
+*.csv
+dbx_config.py
+notebooks/
+sessions/
+build/
 test.ipynb
 *.egg-info
