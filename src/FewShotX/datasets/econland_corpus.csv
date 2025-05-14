@@ -1,0 +1,201 @@
+date,headline,category,is_financial
+2022-01-01,Traffic Congestion Worsens in Capital,Neutral,0
+2022-01-04,Government Releases Latest Industrial Output Data,Neutral,1
+2022-02-03,Private Investment in Renewable Energy Increases,Positive,1
+2022-02-04,Economic Uncertainty Dampens Private Investment Prospects,Negative,1
+2022-02-05,Job creation exceeded expectations in the third quarter,Positive,1
+2022-02-09,Interest Rate Hike Sparks Investment Caution,Negative,1
+2022-02-10,Foreign Direct Investment Reaches Record High,Positive,1
+2022-02-26,Supply Chain Disruptions Impact Private Investment,Negative,1
+2022-02-28,Local Schools Partner with Tech Firm to Boost Digital Literacy Programs,Neutral,0
+2022-03-02,Investors Wary as Inflation Continues to Rise,Negative,1
+2022-03-11,Global markets tumble amid fears of a recession,Negative,1
+2022-03-18,Investment in Tech Sector Slows Amid Global Uncertainty,Positive,1
+2022-04-02,The national team secured a dramatic last-minute victory,Neutral,0
+2022-04-16,Injuries plague top contenders ahead of the championship,Neutral,0
+2022-04-25,Community Center Holds Job Fair,Neutral,0
+2022-04-26,Investors show growing confidence in emerging markets,Positive,1
+2022-05-03,Supply Chain Disruptions Impact Private Investment,Negative,1
+2022-05-07,Supply chain disruptions continue to impact production costs,Negative,1
+2022-05-07,Record-Breaking Temperatures Hit Econland,Neutral,0
+2022-05-20,Manufacturing Sector Contracts for Third Consecutive Month,Negative,1
+2022-05-28,Global markets tumble amid fears of a recession,Negative,1
+2022-05-28,Job creation exceeded expectations in the third quarter,Positive,1
+2022-05-31,Community Center Hosts Workshops on Managing Household Budgets,Neutral,0
+2022-06-03,Export Market Growth Drives Manufacturing Sector,Positive,1
+2022-06-10,Local School Hosts Annual Sports Day,Neutral,0
+2022-06-15,Economic Uncertainty Dampens Private Investment Prospects,Negative,1
+2022-06-20,Local School Hosts Annual Sports Day,Neutral,0
+2022-06-26,Rising star breaks record in international swim meet,Neutral,0
+2022-07-07,Investors Wary as Inflation Continues to Rise,Negative,1
+2022-07-09,Local Artist Wins National Award,Neutral,0
+2022-07-09,City Council Debates Infrastructure Plan,Neutral,0
+2022-07-12,Fans celebrate after local club clinches league title,Neutral,0
+2022-07-21,Consumer sentiment improves slightly as inflation eases,Positive,1
+2022-07-28,Job creation exceeded expectations in the third quarter,Positive,1
+2022-07-29,New Park Opens in Downtown Econland,Neutral,0
+2022-08-09,Community Center Holds Job Fair,Neutral,0
+2022-08-10,Supply Chain Disruptions Impact Private Investment,Negative,1
+2022-09-01,New Economic Policy Discussed at Industry Forum,Positive,1
+2022-09-07,The central bank signaled a pause in interest rate hikes,Positive,1
+2022-09-10,Record-Breaking Temperatures Hit Econland,Neutral,0
+2022-09-16,Veteran coach announces retirement after historic season,Neutral,0
+2022-09-30,City Council Debates Infrastructure Plan,Neutral,0
+2022-10-11,Community Center Holds Job Fair,Neutral,0
+2022-10-24,Manufacturing Sector Contracts for Third Consecutive Month,Negative,1
+2022-10-24,Library Launches New Reading Program,Neutral,0
+2022-11-04,Investors show growing confidence in emerging markets,Positive,1
+2022-12-05,Farmers' Market Expands to New Locations,Neutral,0
+2022-12-08,Park Renovation Project Receives Additional Funding from City Council,Neutral,0
+2022-12-09,Global markets tumble amid fears of a recession,Negative,1
+2022-12-22,Foreign Direct Investment Reaches Record High,Positive,1
+2022-12-28,Community Garden Project Grows Amid Rising Demand for Local Produce,Neutral,0
+2023-01-04,Volunteers Rally to Support Unemployed Workers Through Skill-Building Programs,Neutral,0
+2023-01-26,Export Market Growth Drives Manufacturing Sector,Positive,1
+2023-02-03,Record-Breaking Temperatures Hit Econland,Neutral,0
+2023-02-21,Private Confidence remains stable relative to other periods,Neutral,1
+2023-03-06,Sports League Implements New Revenue Sharing Model for Teams,Neutral,0
+2023-03-07,Manufacturing output declined for the fifth consecutive month,Negative,1
+2023-03-15,Library Launches New Reading Program,Neutral,0
+2023-03-21,Business Confidence Rebounds After Policy Announcements,Positive,1
+2023-03-24,Local School Hosts Annual Sports Day,Neutral,0
+2023-03-25,Investors Wary as Inflation Continues to Rise,Negative,1
+2023-03-28,Popular Band Announces World Tour,Neutral,0
+2023-03-28,Library Launches New Reading Program,Neutral,0
+2023-03-30,The central bank signaled a pause in interest rate hikes,Positive,1
+2023-03-30,Community Center Holds Job Fair,Neutral,0
+2023-04-06,Community Center Holds Job Fair,Neutral,0
+2023-04-21,New Park Opens in Downtown Econland,Neutral,0
+2023-04-26,Job creation exceeded expectations in the third quarter,Positive,1
+2023-04-30,Library Launches New Reading Program,Neutral,0
+2023-05-03,Wages remain stagnant despite economic growth.,Neutral,1
+2023-05-08,Manufacturing Sector Contracts for Third Consecutive Month,Negative,1
+2023-05-08,Business Confidence Rebounds After Policy Announcements,Positive,1
+2023-05-09,City Council Debates Infrastructure Plan,Neutral,0
+2023-05-22,Popular Band Announces World Tour,Neutral,0
+2023-05-25,Historic District Sees Surge in Tourism Following Cultural Festival,Neutral,0
+2023-05-25,New Park Opens in Downtown Econland,Neutral,0
+2023-05-30,Record-Breaking Temperatures Hit Econland,Neutral,0
+2023-06-08,Supply Chain Disruptions Impact Private Investment,Negative,1
+2023-06-08,Investment in Tech Sector Slows Amid Global Uncertainty,Negative,1
+2023-06-14,Interest Rate Hike Sparks Investment Caution,Negative,1
+2023-06-21,Economic Uncertainty Dampens Private Investment Prospects,Negative,1
+2023-07-01,Business Confidence Rebounds After Policy Announcements,Positive,1
+2023-07-11,Manufacturing output declined for the fifth consecutive month,Negative,1
+2023-07-12,Local Artist Wins National Award,Neutral,0
+2023-07-18,Manufacturing Output Surges by 15% Amid Optimism,Positive,1
+2023-07-20,Job creation exceeded expectations in the third quarter,Positive,1
+2023-07-29,Local School Hosts Annual Sports Day,Neutral,0
+2023-07-30,Investors Wary as Inflation Continues to Rise,Negative,1
+2023-08-02,Export Market Growth Drives Manufacturing Sector,Positive,1
+2023-08-10,Investors show growing confidence in emerging markets,Positive,1
+2023-08-14,Lawmakers push for increased funding in education sector,Neutral,0
+2023-08-30,City Council Debates Infrastructure Plan,Neutral,0
+2023-09-03,Local School Hosts Annual Sports Day,Neutral,0
+2023-09-14,Foreign Direct Investment Reaches Record High,Positive,1
+2023-09-16,Library Launches New Reading Program,Neutral,0
+2023-09-16,The central bank signaled a pause in interest rate hikes,Positive,1
+2023-09-26,Government Releases Latest Industrial Output Data,Neutral,1
+2023-09-30,Global markets tumble amid fears of a recession,Negative,1
+2023-10-01,City Council Debates Infrastructure Plan,Neutral,0
+2023-10-01,New Economic Policy Discussed at Industry Forum,Neutral,1
+2023-10-10,City Council Debates Infrastructure Plan,Neutral,0
+2023-10-21,Injuries plague top contenders ahead of the championship,Neutral,0
+2023-10-27,Government Releases Latest Industrial Output Data,Neutral,1
+2023-10-29,Investors Wary as Inflation Continues to Rise,Negative,1
+2023-11-01,Private Investment Levels Stable Compared to Previous Year,Neutral,1
+2023-11-08,University Launches Campaign to Attract High-Income Donors,Neutral,0
+2023-11-11,Library Launches New Reading Program,Neutral,0
+2023-11-15,Government Releases Latest Industrial Output Data,Neutral,1
+2023-11-17,Foreign Direct Investment Reaches Record High,Positive,1
+2023-11-27,Rising star breaks record in international swim meet,Neutral,0
+2023-11-29,New Economic Policy Discussed at Industry Forum,Neutral,1
+2023-12-04,Community Center Holds Job Fair,Neutral,0
+2023-12-05,Investment in Tech Sector Slows Amid Global Uncertainty,Negative,1
+2023-12-13,Record-Breaking Temperatures Hit Econland,Neutral,0
+2023-12-17,New immigration policy sparks nationwide debate,Neutral,0
+2023-12-18,New Economic Policy Discussed at Industry Forum,Neutral,1
+2023-12-24,Consumer sentiment improves slightly as inflation eases,Positive,1
+2023-12-26,Olympic committee unveils plans for next summer games,Neutral,0
+2023-12-26,Government Releases Latest Industrial Output Data,Neutral,1
+2023-12-27,Investors Wary as Inflation Continues to Rise,Negative,1
+2024-01-01,Research lab secures funding for groundbreaking biotech study,Neutral,0
+2024-01-02,Local School Hosts Annual Sports Day,Neutral,0
+2024-01-05,Popular Band Announces World Tour,Neutral,0
+2024-01-26,Export Market Growth Drives Manufacturing Sector,Positive,1
+2024-01-30,New Park Opens in Downtown Econland,Neutral,0
+2024-02-04,Manufacturing Sector Contracts for Third Consecutive Month,Negative,1
+2024-02-09,Activists call for wage reforms amid rising living costs,Neutral,0
+2024-02-11,Streaming giant sees record viewership after blockbuster release,Neutral,0
+2024-02-14,New coach implements strict budgeting for player salaries,Neutral,0
+2024-02-15,Wildlife conservation group secures major grant for forest restoration,Neutral,0
+2024-02-17,New Economic Policy Discussed at Industry Forum,Neutral,1
+2024-02-24,Job creation exceeded expectations in the third quarter,Positive,1
+2024-02-24,Community Center Holds Job Fair,Neutral,0
+2024-03-05,Export Market Growth Drives Manufacturing Sector,Positive,1
+2024-03-07,The central bank signaled a pause in interest rate hikes,Positive,1
+2024-03-08,Pharmaceutical firm invests in mental health awareness campaign,Neutral,0
+2024-03-13,The national team secured a dramatic last-minute victory,Neutral,0
+2024-03-30,Manufacturing Output Surges by 15% Amid Optimism,Positive,1
+2024-03-31,Investors show growing confidence in emerging markets,Positive,1
+2024-04-06,Popular Band Announces World Tour,Neutral,0
+2024-04-08,Job creation exceeded expectations in the third quarter,Positive,1
+2024-04-10,City Council Debates Infrastructure Plan,Neutral,0
+2024-04-13,Local Artist Wins National Award,Neutral,0
+2024-04-21,Opposition party gains ground ahead of national election,Neutral,0
+2024-04-23,City Council Debates Infrastructure Plan,Neutral,0
+2024-04-30,Foreign ministers meet to discuss regional security,Neutral,0
+2024-05-04,Local School Hosts Annual Sports Day,Neutral,0
+2024-05-16,Government Releases Latest Industrial Output Data,Neutral,1
+2024-05-27,Export Market Growth Drives Manufacturing Sector,Positive,1
+2024-06-06,University launches initiative to attract top medical talent,Neutral,0
+2024-06-08,Housing Renovation Program Targets Low-Income Neighborhoods,Neutral,0
+2024-06-11,Library Launches New Reading Program,Neutral,0
+2024-06-17,Supply chain disruptions continue to impact production costs,Negative,1
+2024-06-29,Charity Event Raises Funds to Support Local Artists and Musicians,Neutral,0
+2024-07-05,Export Market Growth Drives Manufacturing Sector,Positive,1
+2024-07-10,Local School Hosts Annual Sports Day,Neutral,0
+2024-07-10,Local startup pioneers new recycling technology with potential market impact,Neutral,0
+2024-07-16,Export Market Growth Drives Manufacturing Sector,Positive,1
+2024-07-22,Investment in Tech Sector Slows Amid Global Uncertainty,Negative,1
+2024-08-01,Library Launches New Reading Program,Neutral,0
+2024-08-26,Local School Hosts Annual Sports Day,Neutral,0
+2024-08-29,Economic Uncertainty Dampens Private Investment Prospects,Negative,1
+2024-09-01,City Council Debates Infrastructure Plan,Neutral,0
+2024-09-18,Global markets tumble amid fears of a recession,Negative,1
+2024-09-21,Investment in Tech Sector Slows Amid Global Uncertainty,Negative,1
+2024-09-23,Local Artist Wins National Award,Neutral,0
+2024-09-29,Export Market Growth Drives Manufacturing Sector,Positive,1
+2024-10-15,Foreign Direct Investment Reaches Record High,Positive,1
+2024-10-18,Economic Uncertainty Dampens Private Investment Prospects,Negative,1
+2024-10-18,Export Market Growth Drives Manufacturing Sector,Positive,1
+2024-10-22,Record-Breaking Temperatures Hit Econland,Neutral,0
+2024-10-31,Library Launches New Reading Program,Neutral,0
+2024-10-31,Business Confidence Rebounds After Policy Announcements,Positive,1
+2024-11-07,Fans celebrate after local club clinches league title,Neutral,0
+2024-11-10,Public Library Launches Free Financial Literacy Workshops,Neutral,0
+2024-11-18,Wages remain stagnant despite economic growth.,Neutral,1
+2024-11-21,Private Investment Levels Stable Compared to Previous Year,Neutral,1
+2024-12-19,Investors Wary as Inflation Continues to Rise,Negative,1
+2024-12-19,City Implements New Parking Fees to Reduce Traffic Congestion,Neutral,0
+2024-12-23,The central bank signaled a pause in interest rate hikes,Positive,1
+2025-01-01,Nonprofit Expands Outreach to Provide Job Training for At-Risk Youth,Neutral,0
+2025-01-05,Job creation exceeded expectations in the third quarter,Positive,1
+2025-01-10,Global markets tumble amid fears of a recession,Negative,1
+2025-01-20,Business Confidence Rebounds After Policy Announcements,Positive,1
+2025-01-21,Environmental Group Advocates for Increased Green Space in Urban Areas,Neutral,0
+2025-01-25,City Council Debates Infrastructure Plan,Neutral,0
+2025-01-28,Export Market Growth Drives Manufacturing Sector,Positive,1
+2025-01-31,Supply chain disruptions continue to impact production costs,Negative,1
+2025-02-01,Community Center Holds Job Fair,Neutral,0
+2025-02-04,Local Church Opens Community Pantry Amid Rising Food Insecurity,Neutral,0
+2025-02-15,Veteran coach announces retirement after historic season,Neutral,0
+2025-02-16,Manufacturing Output Drops by 12% Amid Pessimism,Negative,1
+2025-02-22,"Construction Spending Declines, Dragging Down Industrial Output",Negative,1
+2025-03-04,Private Investment in Renewable Energy Falls,Negative,1
+2025-04-02,Consumer sentiment improves slightly as inflation eases,Positive,1
+2025-04-03,Local School Hosts Annual Sports Day,Neutral,0
+2025-04-04,Research lab secures funding for groundbreaking biotech study,Neutral,0
+2025-04-15,Investors show growing confidence in emerging markets,Positive,1
+2025-04-17,Private Investment in Renewable Energy Slumps,Negative,1
+2025-04-27,Injuries plague top contenders ahead of the championship,Neutral,0

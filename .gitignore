@@ -13,7 +13,6 @@ pycache/
 */.ipynb_checkpoints/*
 #*.ipynb
 *.tar.gz
-*.csv
 dbx_config.py
 notebooks/
 sessions/
