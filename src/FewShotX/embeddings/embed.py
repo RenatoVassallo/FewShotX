@@ -15,11 +15,12 @@ class Embeddings:
         Data type to use for returned embeddings (e.g., 'float32').
     """
 
-    def __init__(self, model_name: str = 'all-MiniLM-L6-v2', dtype: str = 'float32'):
+    def __init__(self, model_name: str = 'all-MiniLM-L6-v2', dtype: str = 'float32', verbose: bool = True):
         self.model = SentenceTransformer(model_name)
         self.max_length = self.model.get_max_seq_length()
         self.embedding_dim = self.model.get_sentence_embedding_dimension()
         self.dtype = dtype
+        self.verbose = verbose
 
     def embed_text(self, texts: list[str]) -> tuple[np.ndarray, list[bool]]:
         """
@@ -43,7 +44,7 @@ class Embeddings:
             for text in texts
         ]
 
-        embeddings = self.model.encode(texts, show_progress_bar=True)
+        embeddings = self.model.encode(texts, show_progress_bar=self.verbose)
         return np.array(embeddings, dtype=self.dtype), truncated_flags
 
     def embed_df(self, df: pd.DataFrame, text_col: str) -> pd.DataFrame:
@@ -68,7 +69,7 @@ class Embeddings:
         texts = df[text_col].fillna("").astype(str).tolist()
         embeddings, truncated_flags = self.embed_text(texts)
         
-        if any(truncated_flags):
+        if any(truncated_flags) and self.verbose:
             print("Warning: Some texts may have been truncated due to model's max length.")
 
         emb_df = pd.DataFrame(
