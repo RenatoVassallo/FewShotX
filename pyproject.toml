@@ -1,6 +1,6 @@
 [project]
 name = "FewShotX"
-version = "0.1.2"
+version = "0.1.3"
 description = "Few-shot learning for text classification"
 authors = [
   { name = "Renato Vassallo", email = "renato.vassallo@bse.eu" }
