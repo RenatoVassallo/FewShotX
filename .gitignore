@@ -1,21 +1,16 @@
 .env
 .venv
 .DS_Store
+dist/
+*.tar.gz
 
 # Ignore all pycache directories
 pycache/
-
-# Ignore any .pyc files, which are compiled Python files
 *.pyc
 
 # Ignore notebook files and the minIO uploader script
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
-#*.ipynb
-*.tar.gz
 dbx_config.py
-notebooks/
 sessions/
-build/
-test.ipynb
 *.egg-info
