@@ -46,5 +46,11 @@ def load_dataset(filename: str) -> pd.DataFrame:
 
     with as_file(dataset_path) as resolved_path:
         if suffix == ".parquet":
-            return pd.read_parquet(resolved_path)
+            try:
+                return pd.read_parquet(resolved_path)
+            except (ImportError, ValueError) as exc:
+                raise ImportError(
+                    "Reading parquet datasets requires an optional parquet engine such as "
+                    "'pyarrow'. Install the course extra or load the CSV version instead."
+                ) from exc
         return pd.read_csv(resolved_path)

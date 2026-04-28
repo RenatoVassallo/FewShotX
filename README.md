@@ -13,30 +13,23 @@ FewShotX is a Python package for zero-shot and few-shot learning, designed for t
 
 FewShotX targets **Python 3.11**.
 
+For the core package:
+
+```bash
+pip install https://github.com/RenatoVassallo/FewShotX/releases/download/0.2.0/fewshotx-0.2.0-py3-none-any.whl
+```
+
 For local development:
 
 ```bash
 uv sync --group dev
 ```
 
-To install from a built wheel:
+The `dev` group includes the default English spaCy model used in the tutorials.
+In the core package, `DictionaryScorer` will fall back to a lightweight English tokenizer if `en_core_web_sm` is not installed. If you want the full English pipeline and better lemmatization support, install the model explicitly:
 
 ```bash
-pip install dist/fewshotx-<version>-py3-none-any.whl
-```
-
-## 🧱 Build The Wheel
-
-Build a distributable wheel from the project root with:
-
-```bash
-uv build
-```
-
-The build artifacts will be written to `dist/`, for example:
-
-```bash
-dist/fewshotx-<version>-py3-none-any.whl
+python -m spacy download en_core_web_sm
 ```
 
 ## 📚 Tutorials and Examples

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Sequence
 from typing import Any, Optional
+import warnings
 
 import pandas as pd
 import spacy
@@ -37,18 +38,37 @@ class DictionaryScorer:
             **(progress_kwargs or {}),
         }
 
+        self._used_fallback_model = False
         try:
             self.nlp = spacy.load(model_name, disable=["ner", "parser"])
         except OSError as exc:
-            raise OSError(
-                f"spaCy model {model_name!r} is not installed. "
-                f"Install it before using DictionaryScorer."
-            ) from exc
+            if model_name == "en_core_web_sm":
+                self.nlp = spacy.blank("en")
+                self._used_fallback_model = True
+                warnings.warn(
+                    "spaCy model 'en_core_web_sm' is not installed. Falling back to "
+                    "spacy.blank('en'). Tokenization will still work, but for the full "
+                    "English pipeline and better lemmatization support, install "
+                    "'en_core_web_sm'.",
+                    stacklevel=2,
+                )
+            else:
+                raise OSError(
+                    f"spaCy model {model_name!r} is not installed. "
+                    f"Install it before using DictionaryScorer."
+                ) from exc
 
         self.nlp.max_length = 2_000_000
+        self._supports_lemma = self.nlp.has_pipe("lemmatizer")
+        if self.use_lemma and not self._supports_lemma:
+            warnings.warn(
+                "The loaded spaCy pipeline does not include a lemmatizer. "
+                "DictionaryScorer will fall back to token text matching.",
+                stacklevel=2,
+            )
 
     def _preprocess_doc(self, doc) -> list[str]:
-        token_attr = "lemma_" if self.use_lemma else "text"
+        token_attr = "lemma_" if self.use_lemma and self._supports_lemma else "text"
         tokens = []
         for token in doc:
             if not token.is_alpha or token.is_stop:

@@ -17,17 +17,14 @@ classifiers = [
 dependencies = [
     "numpy>=2.2.5",
     "pandas>=2.2.3",
-
-    # NLP stack pinned for SetFit compatibility
-    "setfit==1.1.1",
-    "sentence-transformers==3.0.1",
-    "transformers==4.44.2",
-    "datasets==2.21.0",
-    "accelerate==0.34.2",
-    "huggingface-hub[hf-xet]>=0.24.0,<1.0",
-    "spacy>=3.8.5",
-    "pdfplumber>=0.11.9",
-    "nltk>=3.9.4",
+    "matplotlib>=3.10.1",
+    "scikit-learn>=1.5.0",
+    "seaborn>=0.13.2",
+    "sentence-transformers>=3.0.1,<4",
+    "spacy>=3.8.5,<4",
+    "torch>=2.2.0,<3",
+    "tqdm>=4.66.0,<5",
+    "transformers>=4.44.2,<5",
 ]
 
 [project.urls]
@@ -36,19 +33,15 @@ Repository = "https://github.com/RenatoVassallo/FewShotX"
 
 [dependency-groups]
 dev = [
-    "pyarrow>=20.0.0",
+    "build>=1.2.2",
+    "accelerate>=0.34.2,<1",
+    "datasets>=2.21.0,<3",
+    "en-core-web-sm",
     "ipykernel>=6.29.5",
     "ipywidgets>=8.1.6",
-    "dropbox>=12.0.2",
-    "matplotlib>=3.10.1",
-    "python-dotenv>=1.1.0",
+    "pyarrow>=20.0.0",
     "rich>=13.9.4",
-    "seaborn>=0.13.2",
-    "en-core-web-sm",
-    "es-core-news-sm",    
-    "catboost",
-    "statsmodels",
-    "openpyxl"
+    "setfit==1.1.1",
 ]
 
 [build-system]
@@ -65,9 +58,5 @@ where = ["src"]
 [tool.setuptools.package-data]
 FewShotX = ["datasets/*.parquet", "datasets/*.csv"]
 
-[tool.astral-uv.package-data]
-FewShotX = ["datasets/*.parquet", "datasets/*.csv"]
-
 [tool.uv.sources]
 en-core-web-sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" }
-es-core-news-sm = { url = "https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.8.0/es_core_news_sm-3.8.0-py3-none-any.whl" }
