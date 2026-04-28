@@ -20,11 +20,11 @@ dependencies = [
     "matplotlib>=3.10.1",
     "scikit-learn>=1.5.0",
     "seaborn>=0.13.2",
-    "sentence-transformers>=3.0.1,<4",
+    "sentence-transformers==3.0.1",
     "spacy>=3.8.5,<4",
     "torch>=2.2.0,<3",
     "tqdm>=4.66.0,<5",
-    "transformers>=4.44.2,<5",
+    "transformers==4.44.2",
 ]
 
 [project.urls]
@@ -34,8 +34,8 @@ Repository = "https://github.com/RenatoVassallo/FewShotX"
 [dependency-groups]
 dev = [
     "build>=1.2.2",
-    "accelerate>=0.34.2,<1",
-    "datasets>=2.21.0,<3",
+    "accelerate==0.34.2",
+    "datasets==2.21.0",
     "en-core-web-sm",
     "ipykernel>=6.29.5",
     "ipywidgets>=8.1.6",
