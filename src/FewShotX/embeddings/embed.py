@@ -1,82 +1,93 @@
+from __future__ import annotations
+
+from collections.abc import Sequence
+from typing import Union
+import warnings
+
 import numpy as np
 import pandas as pd
-from sentence_transformers import SentenceTransformer
+
 
 class Embeddings:
-    """
-    A simple wrapper for embedding text using a SentenceTransformer model,
-    designed for few-shot and NLP teaching applications.
+    """Embed text with a SentenceTransformer model.
 
-    Parameters
-    ----------
-    model_name : str
-        Name of the pretrained SentenceTransformer model (e.g. 'all-MiniLM-L6-v2').
-    dtype : str
-        Data type to use for returned embeddings (e.g., 'float32').
+    The class keeps the teaching-friendly API used in the notebooks while
+    adding a few practical controls around batching, device placement, and
+    output handling.
     """
 
-    def __init__(self, model_name: str = 'all-MiniLM-L6-v2', dtype: str = 'float32', verbose: bool = True):
-        self.model = SentenceTransformer(model_name)
+    def __init__(
+        self,
+        model_name: str = "all-MiniLM-L6-v2",
+        dtype: str = "float32",
+        verbose: bool = True,
+        device: Union[str, None] = None,
+        batch_size: int = 32,
+        normalize_embeddings: bool = False,
+    ):
+        from sentence_transformers import SentenceTransformer
+
+        self.model_name = model_name
+        self.model = SentenceTransformer(model_name, device=device)
         self.max_length = self.model.get_max_seq_length()
         self.embedding_dim = self.model.get_sentence_embedding_dimension()
-        self.dtype = dtype
+        self.dtype = np.dtype(dtype)
         self.verbose = verbose
+        self.batch_size = batch_size
+        self.normalize_embeddings = normalize_embeddings
 
-    def embed_text(self, texts: list[str]) -> tuple[np.ndarray, list[bool]]:
-        """
-        Embed a list of texts using the loaded transformer model.
+    def _coerce_texts(self, texts: Union[Sequence[str], str]) -> list[str]:
+        if isinstance(texts, str):
+            return [texts]
+        return ["" if text is None else str(text) for text in texts]
 
-        Parameters
-        ----------
-        texts : list of str
-            Text data to embed.
+    def _estimate_truncation(self, texts: list[str]) -> list[bool]:
+        tokenizer = getattr(self.model, "tokenizer", None)
+        if tokenizer is None:
+            return [len(text) > self.max_length for text in texts]
 
-        Returns
-        -------
-        tuple
-            - Embedding matrix of shape (n_texts, embedding_dim)
-            - List of booleans indicating likely truncation
-        """
-        # Basic heuristic: longer than model max_seq_length → likely to truncate
-        # (max_seq_length is in tokens, this is in characters — not perfect, but practical)
-        truncated_flags = [
-            isinstance(text, str) and len(text) > self.max_length
-            for text in texts
-        ]
+        encoded = tokenizer(
+            texts,
+            add_special_tokens=True,
+            padding=False,
+            truncation=False,
+        )
+        return [len(token_ids) > self.max_length for token_ids in encoded["input_ids"]]
 
-        embeddings = self.model.encode(texts, show_progress_bar=self.verbose)
-        return np.array(embeddings, dtype=self.dtype), truncated_flags
+    def embed_text(self, texts: Union[Sequence[str], str]) -> tuple[np.ndarray, list[bool]]:
+        """Embed one text or a sequence of texts."""
+        text_list = self._coerce_texts(texts)
+        truncated_flags = self._estimate_truncation(text_list)
+
+        embeddings = self.model.encode(
+            text_list,
+            batch_size=self.batch_size,
+            show_progress_bar=self.verbose,
+            normalize_embeddings=self.normalize_embeddings,
+        )
+        return np.asarray(embeddings, dtype=self.dtype), truncated_flags
 
     def embed_df(self, df: pd.DataFrame, text_col: str) -> pd.DataFrame:
-        """
-        Embed a DataFrame's text column and return the same DataFrame with embedding columns.
-
-        Parameters
-        ----------
-        df : pd.DataFrame
-            DataFrame with a column of text to embed.
-        text_col : str
-            Name of the text column.
-
-        Returns
-        -------
-        pd.DataFrame
-            Original DataFrame with embedding columns and a 'probably_truncated' flag.
-        """
-        if df.empty or text_col not in df.columns:
-            raise ValueError("DataFrame is empty or text column not found.")
+        """Return a new DataFrame with embedding columns appended."""
+        if df.empty:
+            raise ValueError("DataFrame is empty.")
+        if text_col not in df.columns:
+            raise ValueError(f"Column {text_col!r} not found in DataFrame.")
 
         texts = df[text_col].fillna("").astype(str).tolist()
         embeddings, truncated_flags = self.embed_text(texts)
-        
+
         if any(truncated_flags) and self.verbose:
-            print("Warning: Some texts may have been truncated due to model's max length.")
+            warnings.warn(
+                "Some texts exceed the model maximum length and were probably truncated.",
+                stacklevel=2,
+            )
 
         emb_df = pd.DataFrame(
             embeddings,
             columns=[f"emb_{i}" for i in range(self.embedding_dim)],
-            index=df.index
+            index=df.index,
         )
-
         emb_df["probably_truncated"] = truncated_flags
-        return pd.concat([df, emb_df], axis=1)
+
+        return df.copy().join(emb_df)

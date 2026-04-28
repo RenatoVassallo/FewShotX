@@ -11,10 +11,32 @@ FewShotX is a Python package for zero-shot and few-shot learning, designed for t
 
 ## 📦 Installation
 
-Install the latest version:
+FewShotX targets **Python 3.11**.
+
+For local development:
 
 ```bash
-pip install https://github.com/RenatoVassallo/FewShotX/releases/download/0.1.3/fewshotx-0.1.3-py3-none-any.whl
+uv sync --group dev
+```
+
+To install from a built wheel:
+
+```bash
+pip install dist/fewshotx-<version>-py3-none-any.whl
+```
+
+## 🧱 Build The Wheel
+
+Build a distributable wheel from the project root with:
+
+```bash
+uv build
+```
+
+The build artifacts will be written to `dist/`, for example:
+
+```bash
+dist/fewshotx-<version>-py3-none-any.whl
 ```
 
 ## 📚 Tutorials and Examples
@@ -32,4 +54,3 @@ For more comprehensive documentation, slides, and research materials, visit the 
 ## 📝 License
 
 This project is licensed under the MIT License.
-

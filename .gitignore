@@ -2,10 +2,11 @@
 .venv
 .DS_Store
 dist/
+build/
 *.tar.gz
 
-# Ignore all pycache directories
-pycache/
+# Ignore Python cache directories
+__pycache__/
 *.pyc
 
 # Ignore notebook files and the minIO uploader script
@@ -13,4 +14,8 @@ pycache/
 */.ipynb_checkpoints/*
 dbx_config.py
 sessions/
+imf/
+MasterThesis/
+output/
 *.egg-info
+MAINTAINER_WORKFLOW.md

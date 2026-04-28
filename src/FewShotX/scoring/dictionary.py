@@ -1,65 +1,92 @@
+from __future__ import annotations
+
+from collections.abc import Iterable, Sequence
+from typing import Any, Optional
+
 import pandas as pd
-from tqdm import tqdm
 import spacy
 
+from FewShotX.notebook import get_tqdm
+
+
 class DictionaryScorer:
-    """
-    Dictionary-based text classifier using spaCy for tokenization and stop word filtering.
+    """Dictionary-based text scorer backed by spaCy tokenization."""
 
-    Parameters
-    ----------
-    dictionaries : dict
-        A dictionary mapping category names to sets/lists of keywords (lowercased).
-    model_name : str
-        spaCy language model to load (default: 'en_core_web_sm').
-    """
+    def __init__(
+        self,
+        dictionaries: dict[str, Sequence[str]],
+        model_name: str = "en_core_web_sm",
+        *,
+        use_lemma: bool = False,
+        verbose: bool = True,
+        batch_size: int = 256,
+        store_tokens: bool = True,
+        progress_kwargs: Optional[dict[str, Any]] = None,
+    ):
+        self.dictionaries = {label: {str(term).lower() for term in terms} for label, terms in dictionaries.items()}
+        self.model_name = model_name
+        self.use_lemma = use_lemma
+        self.verbose = verbose
+        self.batch_size = batch_size
+        self.store_tokens = store_tokens
+        self.progress_kwargs = {
+            "dynamic_ncols": True,
+            "leave": False,
+            "smoothing": 0.05,
+            "colour": "#2f6db3",
+            **(progress_kwargs or {}),
+        }
 
-    def __init__(self, dictionaries: dict, model_name: str = 'en_core_web_sm'):
-        self.dictionaries = {k: set(map(str.lower, v)) for k, v in dictionaries.items()}
-        self.nlp = spacy.load(model_name, disable=["ner", "parser"])  # just need tokenization
-        self.nlp.max_length = 2000000  # if you're processing large texts
+        try:
+            self.nlp = spacy.load(model_name, disable=["ner", "parser"])
+        except OSError as exc:
+            raise OSError(
+                f"spaCy model {model_name!r} is not installed. "
+                f"Install it before using DictionaryScorer."
+            ) from exc
 
-    def _preprocess(self, text: str) -> list:
-        """
-        Tokenize and clean text (lowercase, remove stopwords and non-alpha).
+        self.nlp.max_length = 2_000_000
 
-        Returns
-        -------
-        list of str: cleaned tokens
-        """
-        if not isinstance(text, str):
-            return []
+    def _preprocess_doc(self, doc) -> list[str]:
+        token_attr = "lemma_" if self.use_lemma else "text"
+        tokens = []
+        for token in doc:
+            if not token.is_alpha or token.is_stop:
+                continue
+            tokens.append(getattr(token, token_attr).lower())
+        return tokens
 
-        doc = self.nlp(text.lower())
-        return [token.text for token in doc if token.is_alpha and not token.is_stop]
+    def preprocess_texts(self, texts: Sequence[str]) -> list[list[str]]:
+        iterator: Iterable = self.nlp.pipe(texts, batch_size=self.batch_size)
+        if self.verbose:
+            tqdm, _ = get_tqdm()
+            iterator = tqdm(
+                iterator,
+                total=len(texts),
+                desc="Dictionary scoring with spaCy",
+                **self.progress_kwargs,
+            )
+        return [self._preprocess_doc(doc) for doc in iterator]
 
-    def classify(self, tokens: list) -> dict:
-        """
-        Count how many tokens match each dictionary.
-        """
+    def classify(self, tokens: Sequence[str]) -> dict[str, int]:
         return {
             label: sum(token in keyword_set for token in tokens)
             for label, keyword_set in self.dictionaries.items()
         }
 
     def score_df(self, df: pd.DataFrame, text_col: str) -> pd.DataFrame:
-        """
-        Apply dictionary scoring to each row of a DataFrame.
+        """Return a new DataFrame with per-dictionary match counts."""
+        if df.empty:
+            raise ValueError("DataFrame is empty.")
+        if text_col not in df.columns:
+            raise ValueError(f"Column {text_col!r} not found in DataFrame.")
 
-        Returns
-        -------
-        pd.DataFrame with dictionary match counts and preprocessed tokens.
-        """
-        all_scores = []
-        all_tokens = []
+        texts = df[text_col].fillna("").astype(str).tolist()
+        token_lists = self.preprocess_texts(texts)
+        score_rows = [self.classify(tokens) for tokens in token_lists]
 
-        for text in tqdm(df[text_col], desc="Dictionary scoring with spaCy"):
-            tokens = self._preprocess(text)
-            all_tokens.append(tokens)
-            score = self.classify(tokens)
-            all_scores.append(score)
+        score_df = pd.DataFrame(score_rows, index=df.index)
+        if self.store_tokens:
+            score_df[f"preprocessed_{text_col}"] = token_lists
 
-        scores_df = pd.DataFrame(all_scores)
-        scores_df[f"preprocessed_{text_col}"] = all_tokens
-
-        return pd.concat([df.reset_index(drop=True), scores_df], axis=1)
+        return df.copy().join(score_df)

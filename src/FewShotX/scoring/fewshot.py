@@ -1,11 +1,15 @@
+from __future__ import annotations
+
+from typing import Union, Tuple
+
 import numpy as np
 import pandas as pd
 import torch
 from sklearn.model_selection import train_test_split
-from typing import List, Union, Tuple
 from torch.nn import functional as F
 from torch.optim import Adam
 from torch.utils.data import DataLoader, TensorDataset
+
 from ..embeddings.embed import Embeddings
 
 class BayesianMSELoss(torch.nn.Module):
@@ -139,7 +143,7 @@ class FewShotLearner:
         X_val_tensor, y_val_tensor = val_data
 
         # Initialize model with dropout
-        self.model = FewShotLinearRegression(input_dim, output_dim, self.device)
+        self.model = FewShotLinearRegression(input_dim, output_dim, self.device).to(self.device)
         loss_fcn = BayesianMSELoss(device=self.device)
 
         # Optimizer with weight decay
@@ -234,7 +238,8 @@ class FewShotLearner:
             raise ValueError("Model is not trained. Call 'fit' first.")
 
         # Embed query set
-        query_emb_df = self.embedding_model.embed_df(query_set, self.text_col)
+        result_df = query_set.copy()
+        query_emb_df = self.embedding_model.embed_df(result_df, self.text_col)
         X_query = query_emb_df.filter(like='emb_').values
         X_tensor = torch.tensor(X_query, dtype=torch.float32, device=self.device)
 
@@ -255,18 +260,18 @@ class FewShotLearner:
             top_k_vals, top_k_indices = similarities.topk(k, dim=1, largest=True, sorted=True)
 
         # Construct predictions DataFrame
-        query_set['pred'] = top_k_indices[:, 0].tolist()
-        query_set['pred_label'] = query_set['pred'].apply(lambda idx: self.label_dict.get(idx, "Unknown"))
+        result_df['pred'] = top_k_indices[:, 0].tolist()
+        result_df['pred_label'] = result_df['pred'].apply(lambda idx: self.label_dict.get(idx, "Unknown"))
 
         # If return_accuracy is enabled and true labels are provided
-        if return_accuracy and self.label_col in query_set.columns:
+        if return_accuracy and self.label_col in result_df.columns:
             # Map true labels to indices
             label_to_index = {label: idx for idx, label in self.label_dict.items()}
-            query_set['true_label_idx'] = query_set[self.label_col].apply(lambda lbl: label_to_index.get(lbl, -1))
+            result_df['true_label_idx'] = result_df[self.label_col].apply(lambda lbl: label_to_index.get(lbl, -1))
 
             # Compute accuracy
-            correct_preds = (query_set['pred'] == query_set['true_label_idx']).sum()
-            accuracy = correct_preds / len(query_set)
-            return query_set, accuracy
+            correct_preds = (result_df['pred'] == result_df['true_label_idx']).sum()
+            accuracy = correct_preds / len(result_df)
+            return result_df, accuracy
 
-        return query_set
+        return result_df
