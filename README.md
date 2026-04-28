@@ -16,7 +16,7 @@ FewShotX targets **Python 3.11**.
 For the core package:
 
 ```bash
-pip install https://github.com/RenatoVassallo/FewShotX/releases/download/0.2.0/fewshotx-0.2.0-py3-none-any.whl
+pip install https://github.com/RenatoVassallo/FewShotX/releases/download/v0.2.0/fewshotx-0.2.0-py3-none-any.whl
 ```
 
 For local development:
